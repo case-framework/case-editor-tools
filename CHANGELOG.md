@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.6 - 2024-10-29
+
+## Changed
+
+- nex study engine expressions:
+  - `sum`
+  - `neg`
+
 ## 1.6.5 - 2024-01-31
 
 ### Changed

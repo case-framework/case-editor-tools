@@ -162,27 +162,32 @@ export type ConsentQuestionProps = ConsentProps & GenericQuestionProps;
  */
 export type ResponsiveSingleChoiceArrayVariant = 'horizontal' | 'vertical' | 'table';
 
-export interface ResponsiveSingleChoiceArrayProps {
-  scaleOptions: Array<{
+export interface ResponsiveSingleChoiceScaleOptions {
     key: string;
     className?: string;
     content: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>;
-  }>,
-  rows: Array<{
-    key: string;
-    displayCondition?: Expression;
-    content: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>;
-    horizontalModeProps?: {
-      labelPlacement?: 'none' | 'top' | 'bottom';
-      className?: string;
-    },
-    verticalModeProps?: {
-      className?: string;
-    }
-    tableModeProps?: {
-      className?: string;
-    }
-  }>,
+}
+
+export interface ResponsiveSingleChoiceRow {
+  key: string;
+  displayCondition?: Expression;
+  content: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>;
+  horizontalModeProps?: {
+    labelPlacement?: 'none' | 'top' | 'bottom';
+    className?: string;
+  },
+  verticalModeProps?: {
+    className?: string;
+  }
+  tableModeProps?: {
+    className?: string;
+  }
+
+}
+
+export interface ResponsiveSingleChoiceArrayProps {
+  scaleOptions: Array<ResponsiveSingleChoiceScaleOptions>,
+  rows: Array<ResponsiveSingleChoiceRow>,
   defaultMode: ResponsiveSingleChoiceArrayVariant;
   responsiveModes?: {
     sm?: ResponsiveSingleChoiceArrayVariant;
@@ -209,15 +214,12 @@ export interface ResponsiveSingleChoiceArrayProps {
 }
 export type ResponsiveSingleChoiceArrayQuestionProps = GenericQuestionProps & ResponsiveSingleChoiceArrayProps;
 
-/**
- * Response Bipolar Likert Array
- */
-export type ResponsiveBipolarLikertArrayVariant = 'withLabelRow' | 'vertical' | 'table';
-export interface ResponsiveBipolarLikertArrayProps {
-  scaleOptions: Array<{
-    key: string;
-  }>,
-  rows: Array<{
+
+export interface ResponsiveBipolarLikertScaleOption {
+  key: string;
+}
+
+export interface ResponsiveBipolarLikertRow {
     key: string;
     startLabel: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>;
     endLabel: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>;
@@ -231,7 +233,15 @@ export interface ResponsiveBipolarLikertArrayProps {
     tableModeProps?: {
       className?: string;
     }
-  }>,
+}
+
+/**
+ * Response Bipolar Likert Array
+ */
+export type ResponsiveBipolarLikertArrayVariant = 'withLabelRow' | 'vertical' | 'table';
+export interface ResponsiveBipolarLikertArrayProps {
+  scaleOptions: Array<ResponsiveBipolarLikertScaleOption>,
+  rows: Array<ResponsiveBipolarLikertRow>,
   defaultMode: ResponsiveBipolarLikertArrayVariant;
   responsiveModes?: {
     sm?: ResponsiveBipolarLikertArrayVariant;
@@ -265,18 +275,24 @@ export type ResponsiveBipolarLikertArrayQuestionProps = GenericQuestionProps & R
  */
 export type ResponsiveMatrixResponseType = 'dropdown' | 'input' | 'numberInput';
 
-export interface ResponsiveMatrixProps {
-  responseType: ResponsiveMatrixResponseType;
-  breakpoint?: 'sm' | 'md' | 'lg' | 'xl';
-  columns: Array<{ key: string, label: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp> }>;
-  // TODO: check if has double keys
-  rows: Array<{
+export interface ResponsiveMatrixColumn {
+   key: string, label: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp> 
+}
+
+export interface ResponsiveMatrixRow {
     key: string,
     role: 'row' | 'category',
     label: Map<string, string> | Array<StyledTextComponentProp | ExpressionDisplayProp>,
     displayCondition?: Expression;
     className?: string,
-  }>;
+  }
+
+export interface ResponsiveMatrixProps {
+  responseType: ResponsiveMatrixResponseType;
+  breakpoint?: 'sm' | 'md' | 'lg' | 'xl';
+  columns: Array<ResponsiveMatrixColumn>;
+  // TODO: check if has double keys
+  rows: Array<ResponsiveMatrixRow>;
   // TODO: check if has double keys
   dropdownConfig?: {
     unselectedLabeL: Map<string, string>;

@@ -1,12 +1,28 @@
 # Changelog
 
-## 1.6.6 - 2024-10-29
+## 1.6.9 - 2024-10-29
 
 ## Changed
 
-- nex study engine expressions:
-  - `sum`
-  - `neg`
+- add study engine expressions helpers for `sum`, `neg`
+
+## 1.6.8 - 2024-09-16
+
+## Changed
+
+- add study expr helper `getLastSubmissionDate` and `getLastSubmissionDateForIncomingState` (for merge version)
+
+## 1.6.7 - 2024-05-11
+
+## Changed
+
+- add study expr helpers for event payload `hasEventPayload`, `hasEventPayloadKey`, `getEventPayloadValueAsStr`, `getEventPayloadValueAsNum`, `hasEventPayloadKeyWithValue`
+
+## 1.6.6 - 2024-05-11
+
+## Changed
+
+- add even type "custom" and `checkEventKey`
 
 ## 1.6.5 - 2024-01-31
 

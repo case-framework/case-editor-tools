@@ -90,6 +90,16 @@ const countResponseItems = (itemKey: string, responseKey: string): Expression =>
 }
 
 /**
+ * Check if a study code is present in the study wide list with the given list key
+ * @param listKey
+ * @param code
+ * @returns
+ */
+const isStudyCodePresent = (listKey: string | Expression, code: string | Expression): Expression => {
+  return generateExpression('isStudyCodePresent', undefined, listKey, code);
+}
+
+/**
  * Method to run a check on previous responses of the participant.
  * @param condition expression that will be evaluated on each retrieved response
  * @param checkType - optional - 'all'/'any'/<number>: determines how to calculate the final value of the check. Default: 'all'. 'all' means, all the retrieved responses need to fulfil the condition, otherwise the methods returns false. 'any' means at least one retrieved response needs to fulfil the condtion. In both cases, if there were no responses retrieved, returns false. If a number is given here, it means, at least this many response need to fulfil the condition.
@@ -361,6 +371,14 @@ const REMOVE_ALL_MESSAGES = () => generateExpression('REMOVE_ALL_MESSAGES', unde
 const REMOVE_MESSAGES_BY_TYPE = (messageType: string) => generateExpression('REMOVE_MESSAGES_BY_TYPE', undefined, messageType);
 
 /**
+ * Remove a study code from a list
+ * @param listKey
+ * @param code
+ * @returns
+ */
+const REMOVE_STUDY_CODE = (listKey: string | Expression, code: string | Expression) => generateExpression('REMOVE_STUDY_CODE', undefined, listKey, code);
+
+/**
  * Add a new notification message for the subscribed researchers
  * @param messageType message type
  * @returns
@@ -610,6 +628,7 @@ export const NativeStudyEngineExpressions = {
   hasResponseKey,
   hasResponseKeyWithValue,
   countResponseItems,
+  isStudyCodePresent,
   // Old responses
   checkConditionForOldResponses,
   // Event payload methods:
@@ -709,6 +728,7 @@ export const StudyEngineActions = {
     stopParticipation,
     finishParticipation,
   },
+  removeStudyCode: REMOVE_STUDY_CODE,
   notifyResearcher: NOTIFY_RESEARCHER,
 }
 

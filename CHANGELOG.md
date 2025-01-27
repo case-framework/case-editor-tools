@@ -1,10 +1,12 @@
 # Changelog
 
-## 1.6.9 - 2024-10-29
+## 1.6.9 - 2025-01-27
 
 ## Changed
 
 - add study engine expressions helpers for `sum`, `neg`
+- add study engine expressions helpers for `isStudyCodePresent` and `removeStudyCode`
+- add study engine expressions helpers for `hasLinkingCode`, `getLinkingCode`,`setLinkingCode` and `deleteLinkingCode`
 
 ## 1.6.8 - 2024-09-16
 

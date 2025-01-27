@@ -233,8 +233,8 @@ const lte = (val1: Expression | string | number, val2: Expression | string | num
 const gt = (val1: Expression | string | number, val2: Expression | string | number) => generateExpression('gt', undefined, val1, val2);
 const gte = (val1: Expression | string | number, val2: Expression | string | number) => generateExpression('gte', undefined, val1, val2);
 
-const sum = (...values : (Expression | number)[]) => generateExpression('sum', "float", ...values);
-const neg = (value: Expression|number) => generateExpression("neg", "float", value);
+const sum = (...values: (Expression | number)[]) => generateExpression('sum', "float", ...values);
+const neg = (value: Expression | number) => generateExpression("neg", "float", value);
 
 /**
  * Generate a timestamp value (POSIX timestamp). T = T_ref + delta. If 'reference' is not defined, the current time will be used as a reference.
@@ -494,6 +494,43 @@ const setReportSummary = (
 }
 
 /**
+ * Method to check if a participant has any linking code for a specific key
+ * @param forKey
+ * @returns
+ */
+const hasLinkingCode = (forKey: string | Expression) => {
+  return generateExpression('hasLinkingCode', undefined, forKey);
+}
+
+/**
+ * Retrieve the value of a linking code for a specific key. Will return empty string if not present
+ * @param forKey
+ * @returns
+ */
+const getLinkingCode = (forKey: string | Expression) => {
+  return generateExpression("getLinkingCode", undefined, forKey);
+}
+
+/**
+ * Set a linking code for a specific key. This will override any existing value for that key, if already present.
+ * @param forKey: will result in an error if empty
+ * @param value
+ * @returns
+ */
+const SET_LINKING_CODE = (forKey: string | Expression, value: string | Expression) => {
+  return generateExpression('SET_LINKING_CODE', undefined, forKey, value);
+}
+
+/**
+ * Delete a linking code for a specific key or all linling codes if no key is specified
+ * @param forKey
+ * @returns
+ */
+const DELETE_LINKING_CODE = (forKey?: string | Expression) => {
+  return generateExpression('DELETE_LINKING_CODE', undefined, forKey);
+}
+
+/**
  * Method to call external event handler
  * @param serviceName name of the external service endpoint that should be used (URL and API key are config of the service)
  * @param route optional route to be appended to the service URL
@@ -651,6 +688,10 @@ export const NativeStudyEngineExpressions = {
     hasStudyStatus,
     hasParticipantFlagKeyAndValue,
     hasParticipantFlagKey,
+    linkingCode: {
+      has: hasLinkingCode,
+      get: getLinkingCode,
+    },
     getParticipantFlagValue,
     getParticipantFlagValueAsNum,
     getLastSubmissionDate,
@@ -716,7 +757,10 @@ export const StudyEngineActions = {
       setReportIcon,
       setReportMessage,
       setReportSummary,
-
+    },
+    linkingCodes: {
+      set: SET_LINKING_CODE,
+      delete: DELETE_LINKING_CODE,
     },
     messages: {
       add: ADD_MESSAGE,

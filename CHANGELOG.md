@@ -12,7 +12,7 @@
 
 - add study engine expressions helpers for `sum`, `neg`
 - add study engine expressions helpers for `isStudyCodePresent` and `removeStudyCode`
-- add study engine expressions helpers for `hasLinkingCode`, `getLinkingCode`,`setLinkingCode` and `deleteLinkingCode`
+- add study engine expressions helpers for `hasLinkingCode`, `getLinkingCodeValue`,`setLinkingCode` and `deleteLinkingCode`
 
 ## 1.6.8 - 2024-09-16
 

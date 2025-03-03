@@ -508,7 +508,7 @@ const hasLinkingCode = (forKey: string | Expression) => {
  * @returns
  */
 const getLinkingCode = (forKey: string | Expression) => {
-  return generateExpression("getLinkingCode", undefined, forKey);
+  return generateExpression("getLinkingCodeValue", undefined, forKey);
 }
 
 /**

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.10 - 2025-03-03
+
+### Changed
+
+- add study engine action `DRAW_STUDY_CODE_AS_LINKING_CODE`
+
 ## 1.6.9 - 2025-01-27
 
 ## Changed

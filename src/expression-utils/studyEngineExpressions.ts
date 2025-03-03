@@ -531,6 +531,16 @@ const DELETE_LINKING_CODE = (forKey?: string | Expression) => {
 }
 
 /**
+ * Draw (find one and delete) a study code from a list and store it as a linking code for the participant
+ * @param listKey Pick one from this list of study codes if available
+ * @param forKey optional key to store the linking code for. If not defined, the listKey will be used.
+ * @returns
+ */
+const DRAW_STUDY_CODE_AS_LINKING_CODE = (listKey: string | Expression, forKey?: string | Expression) => {
+  return generateExpression('DRAW_STUDY_CODE_AS_LINKING_CODE', undefined, listKey, forKey);
+}
+
+/**
  * Method to call external event handler
  * @param serviceName name of the external service endpoint that should be used (URL and API key are config of the service)
  * @param route optional route to be appended to the service URL
@@ -761,6 +771,7 @@ export const StudyEngineActions = {
     linkingCodes: {
       set: SET_LINKING_CODE,
       delete: DELETE_LINKING_CODE,
+      drawFromStudyCodeList: DRAW_STUDY_CODE_AS_LINKING_CODE,
     },
     messages: {
       add: ADD_MESSAGE,

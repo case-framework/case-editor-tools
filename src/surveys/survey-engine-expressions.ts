@@ -342,13 +342,7 @@ const dateResponseDiffFromNow = (itemKey: string, responseKey: string, unit: 'ye
  */
 const parseParticipantFlagAsNum = (key: string): Expression => {
   return parseValueAsNum(
-    getAttribute(
-      getAttribute(
-        getContext(),
-        'participantFlags'
-      ),
-      key,
-    )
+    generateExpression('getParticipantFlagValue', undefined, key)
   );
 }
 
@@ -358,15 +352,7 @@ const parseParticipantFlagAsNum = (key: string): Expression => {
  * @returns
  */
 const hasParticipantFlagKey = (key: string): Expression => {
-  return isDefined(
-    getAttribute(
-      getAttribute(
-        getContext(),
-        'participantFlags'
-      ),
-      key,
-    )
-  );
+  return generateExpression('hasParticipantFlagKey', undefined, key)
 }
 
 /**
@@ -375,17 +361,8 @@ const hasParticipantFlagKey = (key: string): Expression => {
  * @param value string value to be checked for a match
  * @returns
  */
-const hasParticipantFlagKeyAndValue = (key: string, value: string): Expression => {
-  return eq(
-    getAttribute(
-      getAttribute(
-        getContext(),
-        'participantFlags'
-      ),
-      key,
-    ),
-    value,
-  );
+const hasParticipantFlagKeyAndValue = (key: string, value: string | Expression): Expression => {
+  return generateExpression('hasParticipantFlagKeyAndValue', undefined, key, value)
 }
 
 /**

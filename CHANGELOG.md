@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.12 - 2025-03-13
+
+### Changed
+
+- update participant flag methods to use new expressions of the survey-engine
+
 ## 1.6.11 (10) - 2025-03-03
 
 ### Changed

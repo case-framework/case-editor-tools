@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.13 - 2025-04-03
+
+### Changed
+
+- add study engine expression for `getTsForNextStartOfMonth`
+
 ## 1.6.12 - 2025-03-13
 
 ### Changed

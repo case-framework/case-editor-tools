@@ -260,6 +260,23 @@ const getISOWeekForTs = (ts: number | Expression) => generateExpression(
   ts
 )
 
+
+type Month = 'January' | 'February' | 'March' | 'April' | 'May' | 'June' | 'July' | 'August' | 'September' | 'October' | 'November' | 'December'
+
+/**
+ * Generate a timestamp value (POSIX timestamp) for the beginning of the month for the first time that is later than the reference
+ * @param month which ISO week should be used for the timestamp generation
+ * @param reference optional - a hard coded number, or an expression that should retrieve a timestamp (e.g., surveys assigned from, or response to a date question)
+ * @returns
+ */
+const getTsForNextStartOfMonth = (month: Month | Expression, reference?: number | Expression) => generateExpression(
+  'getTsForNextStartOfMonth',
+  undefined,
+  month,
+  reference ? reference : undefined
+)
+
+
 /**
  * Generate a timestamp value (POSIX timestamp) for the beginning of the week for the first time that is later than the reference and has the ISO week as defined in argument ISOWeek.
  * @param ISOWeek which ISO week should be used for the timestamp generation
@@ -738,6 +755,7 @@ export const NativeStudyEngineExpressions = {
   // Other
   timestampWithOffset,
   getISOWeekForTs,
+  getTsForNextStartOfMonth,
   getTsForNextISOWeek,
   parseValueAsNum,
   generateRandomNumber: (min: number, max: number) => generateExpression('generateRandomNumber', undefined, min, max),

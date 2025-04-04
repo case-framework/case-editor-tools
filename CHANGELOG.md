@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.14 - 2025-04-04
+
+### Changed
+
+- can set content for responseRow of matrix question
+
 ## 1.6.13 - 2025-04-03
 
 ### Changed

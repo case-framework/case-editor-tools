@@ -46,6 +46,7 @@ export interface ResponseRowCell {
 export interface ResponseRow {
   role: 'responseRow',
   key: string;
+  content?: Map<string, string>,
   displayCondition?: Expression;
   disabled?: Expression;
   cells: Array<ResponseRowCell>
@@ -77,6 +78,9 @@ export const initMatrixQuestion = (
       key: rowDef.key,
       role: rowDef.role,
     });
+
+
+
 
     if (rowDef.displayCondition) {
       rowEditor.setDisplayCondition(rowDef.displayCondition);
@@ -119,6 +123,9 @@ export const initMatrixQuestion = (
         });
         break;
       case 'responseRow':
+        if (rowDef.content) {
+          rowEditor.setContent(generateLocStrings(rowDef.content));
+        }
         rowDef.cells.forEach(cell => {
           const cellEditor = new ComponentEditor(undefined, {
             key: cell.key,

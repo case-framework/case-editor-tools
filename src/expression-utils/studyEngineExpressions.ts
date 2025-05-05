@@ -539,7 +539,7 @@ const SET_LINKING_CODE = (forKey: string | Expression, value: string | Expressio
 }
 
 /**
- * Delete a linking code for a specific key or all linling codes if no key is specified
+ * Delete a linking code for a specific key or all linking codes if no key is specified
  * @param forKey
  * @returns
  */

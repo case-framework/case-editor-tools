@@ -8,17 +8,20 @@ export class StudyRules {
   private timerRules?: Expression[];
   private mergeRules?: Expression[];
   private leaveRules?: Expression[];
+  private customRules?: Expression[];
 
   constructor(
     enterRules?: Expression[],
     submitRules?: Expression[],
     timerRules?: Expression[],
     mergeRules?: Expression[],
+    customRules?: Expression[],
   ) {
     this.enterRules = enterRules;
     this.submitRules = submitRules;
     this.timerRules = timerRules;
     this.mergeRules = mergeRules;
+    this.customRules = customRules;
   }
 
   get() {
@@ -46,6 +49,11 @@ export class StudyRules {
     if (this.leaveRules) {
       rules.push(
         StudyEngine.ifThen(StudyEngine.checkEventType('LEAVE'), ...this.leaveRules)
+      );
+    }
+    if (this.customRules) {
+      rules.push(
+        StudyEngine.ifThen(StudyEngine.checkEventType('CUSTOM'), ...this.customRules)
       );
     }
     return rules;

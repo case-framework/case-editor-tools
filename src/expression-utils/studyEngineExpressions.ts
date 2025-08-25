@@ -391,6 +391,14 @@ const REMOVE_ALL_MESSAGES = () => generateExpression('REMOVE_ALL_MESSAGES', unde
 const REMOVE_MESSAGES_BY_TYPE = (messageType: string) => generateExpression('REMOVE_MESSAGES_BY_TYPE', undefined, messageType);
 
 /**
+ * Send a message now
+ * @param messageType message type
+ * @param languageOverride optional language override
+ * @returns
+ */
+const SEND_MESSAGE_NOW = (messageType: string, languageOverride?: string) => generateExpression('SEND_MESSAGE_NOW', undefined, messageType, languageOverride);
+
+/**
  * Remove a study code from a list
  * @param listKey
  * @param code
@@ -795,6 +803,7 @@ export const StudyEngineActions = {
       add: ADD_MESSAGE,
       removeAll: REMOVE_ALL_MESSAGES,
       remove: REMOVE_MESSAGES_BY_TYPE,
+      sendNow: SEND_MESSAGE_NOW,
     },
     confidentialResponses: {
       removeByKey: REMOVE_CONFIDENTIAL_RESPONSE_BY_KEY,

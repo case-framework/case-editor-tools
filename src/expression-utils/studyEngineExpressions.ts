@@ -100,6 +100,24 @@ const isStudyCodePresent = (listKey: string | Expression, code: string | Express
 }
 
 /**
+ * Get the current study counter value for the given scope key (does not change the counter)
+ * @param scopeKey
+ * @returns
+ */
+const getCurrentStudyCounterValue = (scopeKey: string | Expression): Expression => {
+  return generateExpression('getCurrentStudyCounterValue', undefined, scopeKey);
+}
+
+/**
+ * Get the next study counter value for the given scope key (increases the counter by 1)
+ * @param scopeKey
+ * @returns
+ */
+const getNextStudyCounterValue = (scopeKey: string | Expression): Expression => {
+  return generateExpression('getNextStudyCounterValue', undefined, scopeKey);
+}
+
+/**
  * Method to run a check on previous responses of the participant.
  * @param condition expression that will be evaluated on each retrieved response
  * @param checkType - optional - 'all'/'any'/<number>: determines how to calculate the final value of the check. Default: 'all'. 'all' means, all the retrieved responses need to fulfil the condition, otherwise the methods returns false. 'any' means at least one retrieved response needs to fulfil the condtion. In both cases, if there were no responses retrieved, returns false. If a number is given here, it means, at least this many response need to fulfil the condition.
@@ -566,6 +584,52 @@ const DRAW_STUDY_CODE_AS_LINKING_CODE = (listKey: string | Expression, forKey?: 
 }
 
 /**
+ * Get the next study counter value for the given scope key (increases the counter by 1) and store it as a flag for the participant
+ * @param scopeKey
+ * @param flagKey
+ * @param prefix prefix to be added to the flag
+ * @param padding number of digits to pad the counter with
+ * @returns
+ */
+const GET_NEXT_STUDY_COUNTER_AS_FLAG = (
+  scopeKey: string | Expression,
+  flagKey: string | Expression,
+  prefix: string | Expression,
+  padding: number | Expression,
+) => {
+  return generateExpression('GET_NEXT_STUDY_COUNTER_AS_FLAG', undefined, scopeKey, flagKey, prefix, padding);
+}
+
+/**
+ * Get the next study counter value for the given scope key (increases the counter by 1) and store it as a linking code for the participant
+ * @param scopeKey
+ * @param linkingCodeKey
+ * @param prefix prefix to be added to the linking code
+ * @param padding number of digits to pad the counter with
+ * @returns
+ */
+const GET_NEXT_STUDY_COUNTER_AS_LINKING_CODE = (
+  scopeKey: string | Expression,
+  linkingCodeKey: string | Expression,
+  prefix: string | Expression,
+  padding: number | Expression,
+) => {
+  return generateExpression('GET_NEXT_STUDY_COUNTER_AS_LINKING_CODE', undefined, scopeKey, linkingCodeKey, prefix, padding);
+}
+
+
+/**
+ * Reset the study counter for the given scope key
+ * @param scopeKey
+ * @returns
+ */
+const RESET_STUDY_COUNTER = (
+  scopeKey: string | Expression,
+) => {
+  return generateExpression('RESET_STUDY_COUNTER', undefined, scopeKey);
+}
+
+/**
  * Method to call external event handler
  * @param serviceName name of the external service endpoint that should be used (URL and API key are config of the service)
  * @param route optional route to be appended to the service URL
@@ -704,6 +768,8 @@ export const NativeStudyEngineExpressions = {
   hasResponseKeyWithValue,
   countResponseItems,
   isStudyCodePresent,
+  getCurrentStudyCounterValue,
+  getNextStudyCounterValue,
   // Old responses
   checkConditionForOldResponses,
   // Event payload methods:
@@ -779,6 +845,7 @@ export const StudyEngineActions = {
     startNewStudySession: START_NEW_STUDY_SESSION,
     updateFlag: UPDATE_FLAG,
     removeFlag: REMOVE_FLAG,
+    getNextStudyCounterAsFlag: GET_NEXT_STUDY_COUNTER_AS_FLAG,
     assignedSurveys: {
       add: ADD_NEW_SURVEY,
       removeAll: REMOVE_ALL_SURVEYS,
@@ -798,6 +865,7 @@ export const StudyEngineActions = {
       set: SET_LINKING_CODE,
       delete: DELETE_LINKING_CODE,
       drawFromStudyCodeList: DRAW_STUDY_CODE_AS_LINKING_CODE,
+      getNextStudyCounterAsLinkingCode: GET_NEXT_STUDY_COUNTER_AS_LINKING_CODE,
     },
     messages: {
       add: ADD_MESSAGE,
@@ -815,6 +883,7 @@ export const StudyEngineActions = {
     finishParticipation,
   },
   removeStudyCode: REMOVE_STUDY_CODE,
+  resetStudyCounter: RESET_STUDY_COUNTER,
   notifyResearcher: NOTIFY_RESEARCHER,
 }
 

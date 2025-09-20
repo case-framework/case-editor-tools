@@ -376,9 +376,9 @@ const START_NEW_STUDY_SESSION = (): Expression => generateExpression('START_NEW_
  * @param newValue: string, number or expression where result should be written in the flag's value
  * @returns
  */
-const UPDATE_FLAG = (key: string, newValue: string | number | Expression) => generateExpression('UPDATE_FLAG', undefined, key, newValue)
+const UPDATE_FLAG = (key: string | Expression, newValue: string | number | Expression) => generateExpression('UPDATE_FLAG', undefined, key, newValue)
 
-const REMOVE_FLAG = (key: string) => generateExpression('REMOVE_FLAG', undefined, key);
+const REMOVE_FLAG = (key: string | Expression) => generateExpression('REMOVE_FLAG', undefined, key);
 
 const ADD_NEW_SURVEY = (surveyKey: string,
   category: 'immediate' | 'prio' | 'normal' | 'optional',

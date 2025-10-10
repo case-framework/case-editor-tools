@@ -366,6 +366,61 @@ const hasParticipantFlagKeyAndValue = (key: string, value: string | Expression):
 }
 
 /**
+ * Check if a study variable is present
+ * @param key look up this study variable
+ * @returns return true if key is present. If any of the two is different, or study variables is empty, it returns false.
+ */
+const hasStudyVariableKey = (key: string | Expression): Expression => {
+  return generateExpression('hasStudyVariableKey', undefined, key)
+}
+
+/**
+ * Get a study variable value as a boolean
+ * @param key look up this study variable
+ * @returns return the value of the study variable
+ */
+const getStudyVariableBoolean = (key: string | Expression): Expression => {
+  return generateExpression('getStudyVariableBoolean', undefined, key)
+}
+
+/**
+ * Get a study variable value as a string
+ * @param key look up this study variable
+ * @returns return the value of the study variable
+ */
+const getStudyVariableString = (key: string | Expression): Expression => {
+  return generateExpression('getStudyVariableString', undefined, key)
+}
+
+/**
+ * Get a study variable value as an integer
+ * @param key look up this study variable
+ * @returns return the value of the study variable
+ */
+const getStudyVariableInt = (key: string | Expression): Expression => {
+  return generateExpression('getStudyVariableInt', undefined, key)
+}
+
+
+/**
+ * Get a study variable value as a float
+ * @param key look up this study variable
+ * @returns return the value of the study variable
+ */
+const getStudyVariableFloat = (key: string | Expression): Expression => {
+  return generateExpression('getStudyVariableFloat', undefined, key)
+}
+
+/**
+ * Get a study variable value as a date
+ * @param key look up this study variable
+ * @returns return the value of the study variable in posix timestamp format (seconds since 1970-01-01 00:00:00 UTC)
+ */
+const getStudyVariableDate = (key: string | Expression): Expression => {
+  return generateExpression('getStudyVariableDate', undefined, key)
+}
+
+/**
  * Check if the participant is logged in currently.
  * @returns true if context variable isLoggedIn is set and true
  */
@@ -530,6 +585,14 @@ export const SurveyEngine = {
     hasKey: hasParticipantFlagKey,
     hasKeyAndValue: hasParticipantFlagKeyAndValue,
     getAsNum: parseParticipantFlagAsNum,
+  },
+  studyVariables: {
+    hasKey: hasStudyVariableKey,
+    getBoolean: getStudyVariableBoolean,
+    getString: getStudyVariableString,
+    getInt: getStudyVariableInt,
+    getFloat: getStudyVariableFloat,
+    getDate: getStudyVariableDate,
   },
   isLoggedIn,
 }

@@ -245,6 +245,19 @@ const getLastSubmissionDateForIncoming = (surveyKey?: string) => generateExpress
 const lastSubmissionDateOlderThan = (reference: number | Expression, surveyKey?: string) => generateExpression('lastSubmissionDateOlderThan', undefined, reference, surveyKey);
 const lastSubmissionDateOlderThanForIncoming = (reference: number | Expression, surveyKey?: string) => generateExpression('incomingState:lastSubmissionDateOlderThan', undefined, reference, surveyKey);
 
+
+const getStudyVariableBoolean = (key: string | Expression) => generateExpression('getStudyVariableBoolean', undefined, key);
+const getStudyVariableString = (key: string | Expression) => generateExpression('getStudyVariableString', undefined, key);
+const getStudyVariableInt = (key: string | Expression) => generateExpression('getStudyVariableInt', undefined, key);
+const getStudyVariableFloat = (key: string | Expression) => generateExpression('getStudyVariableFloat', undefined, key);
+const getStudyVariableDate = (key: string | Expression) => generateExpression('getStudyVariableDate', undefined, key);
+
+const UPDATE_STUDY_VARIABLE_BOOLEAN = (key: string | Expression, value: Expression) => generateExpression('UPDATE_STUDY_VARIABLE_BOOLEAN', undefined, key, value);
+const UPDATE_STUDY_VARIABLE_STRING = (key: string | Expression, value: Expression | string) => generateExpression('UPDATE_STUDY_VARIABLE_STRING', undefined, key, value);
+const UPDATE_STUDY_VARIABLE_INT = (key: string | Expression, value: number | Expression) => generateExpression('UPDATE_STUDY_VARIABLE_INT', undefined, key, value);
+const UPDATE_STUDY_VARIABLE_FLOAT = (key: string | Expression, value: number | Expression) => generateExpression('UPDATE_STUDY_VARIABLE_FLOAT', undefined, key, value);
+const UPDATE_STUDY_VARIABLE_DATE = (key: string | Expression, value: number | Expression) => generateExpression('UPDATE_STUDY_VARIABLE_DATE', undefined, key, value);
+
 const eq = (val1: Expression | string | number, val2: Expression | string | number) => generateExpression('eq', undefined, val1, val2);
 const lt = (val1: Expression | string | number, val2: Expression | string | number) => generateExpression('lt', undefined, val1, val2);
 const lte = (val1: Expression | string | number, val2: Expression | string | number) => generateExpression('lte', undefined, val1, val2);
@@ -815,6 +828,13 @@ export const NativeStudyEngineExpressions = {
       getMessageNextTime: getMessageNextTimeForIncoming,
     }
   },
+  getStudyVariable: {
+    boolean: getStudyVariableBoolean,
+    string: getStudyVariableString,
+    int: getStudyVariableInt,
+    float: getStudyVariableFloat,
+    date: getStudyVariableDate,
+  },
   // logical and comparision
   eq,
   lt,
@@ -881,6 +901,13 @@ export const StudyEngineActions = {
     // Extra methods:
     stopParticipation,
     finishParticipation,
+  },
+  updateStudyVariable: {
+    boolean: UPDATE_STUDY_VARIABLE_BOOLEAN,
+    string: UPDATE_STUDY_VARIABLE_STRING,
+    int: UPDATE_STUDY_VARIABLE_INT,
+    float: UPDATE_STUDY_VARIABLE_FLOAT,
+    date: UPDATE_STUDY_VARIABLE_DATE,
   },
   removeStudyCode: REMOVE_STUDY_CODE,
   resetStudyCounter: RESET_STUDY_COUNTER,

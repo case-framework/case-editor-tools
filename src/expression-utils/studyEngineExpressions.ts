@@ -228,6 +228,13 @@ const getMessageNextTime = (messageType: string) => generateExpression('getMessa
 const getMessageNextTimeForIncoming = (messageType: string) => generateExpression('incomingState:getMessageNextTime', undefined, messageType);
 
 /**
+ * Get the current study session id
+ * @returns study session id
+ */
+const getCurrentStudySession = () => generateExpression('getCurrentStudySession', undefined);
+const getCurrentStudySessionForIncoming = () => generateExpression('incomingState:getCurrentStudySession', undefined);
+
+/**
  * Retrieve the timestamp of the last submission
  * @param surveyKey - optional - check for this specific survey key. If empty, it would check for all the submissions.
  * @returns timestamp value or zero
